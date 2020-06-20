@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next gemini" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/yfzhang1/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/yfzhang1/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/yfzhang1/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/yfzhang1/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/yfzhang1/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/yfzhang1/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/yfzhang1/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="docker使用记事docker由docker主机(即宿主机),docker容器，docker守护进程(即docker服务端，可运行N··个docker容器) -安装配置–安装—yum更新1yum update —安装依赖 需要的包，yum-util提供yum-config-manager功能，另外两个是devicemapper驱动依赖  1yum install -y yum-utils dev">
+<meta property="og:type" content="article">
+<meta property="og:title" content="docker记事">
+<meta property="og:url" content="https://yfzhang1.gitee.io/yfzhang1/2020/06/20/docker%E8%AE%B0%E4%BA%8B/index.html">
+<meta property="og:site_name" content="yf.zhang">
+<meta property="og:description" content="docker使用记事docker由docker主机(即宿主机),docker容器，docker守护进程(即docker服务端，可运行N··个docker容器) -安装配置–安装—yum更新1yum update —安装依赖 需要的包，yum-util提供yum-config-manager功能，另外两个是devicemapper驱动依赖  1yum install -y yum-utils dev">
+<meta property="article:published_time" content="2020-06-20T03:21:59.255Z">
+<meta property="article:modified_time" content="2020-06-20T03:47:48.013Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/yfzhang1/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://yfzhang1.gitee.io/yfzhang1/2020/06/20/docker记事/"/>
+
+
+
+
+
+  <title>docker记事 | yf.zhang</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/yfzhang1/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">yf.zhang</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/yfzhang1/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/yfzhang1/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yfzhang1.gitee.io/yfzhang1/yfzhang1/2020/06/20/docker%E8%AE%B0%E4%BA%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/yfzhang1/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yf.zhang">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">docker记事</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-20T11:21:59+08:00">
+                2020-06-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="docker使用记事"><a href="#docker使用记事" class="headerlink" title="docker使用记事"></a>docker使用记事</h1><p>docker由docker主机(即宿主机),docker容器，docker守护进程(即docker服务端，可运行N··个docker容器)</p>
+<h2 id="安装配置"><a href="#安装配置" class="headerlink" title="-安装配置"></a>-安装配置</h2><h3 id="–安装"><a href="#–安装" class="headerlink" title="–安装"></a>–安装</h3><h4 id="—yum更新"><a href="#—yum更新" class="headerlink" title="—yum更新"></a>—yum更新</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum update</span><br></pre></td></tr></table></figure>
+<h4 id="—安装依赖"><a href="#—安装依赖" class="headerlink" title="—安装依赖"></a>—安装依赖</h4><blockquote>
+<p>需要的包，yum-util提供yum-config-manager功能，另外两个是devicemapper驱动依赖</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y yum-utils device-mapper-persitent-data lvm2</span><br></pre></td></tr></table></figure>
+<h4 id="—设置yum源为阿里云"><a href="#—设置yum源为阿里云" class="headerlink" title="—设置yum源为阿里云"></a>—设置yum源为阿里云</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>查看仓库中的docker版本</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum list docker-ce --showduplicates | sort -r</span><br></pre></td></tr></table></figure>
+
+<h4 id="—安装docker-ce"><a href="#—安装docker-ce" class="headerlink" title="—安装docker-ce"></a>—安装docker-ce</h4><p>(ce为社区版，ee为企业版)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install docker-ce</span><br></pre></td></tr></table></figure>
+<h4 id="—启动docker"><a href="#—启动docker" class="headerlink" title="—启动docker"></a>—启动docker</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl start docker</span><br><span class="line">systemctl <span class="built_in">enable</span> docker	<span class="comment">#注册开机启动</span></span><br></pre></td></tr></table></figure>
+<h4 id="–配置docker国内镜像"><a href="#–配置docker国内镜像" class="headerlink" title="–配置docker国内镜像"></a>–配置docker国内镜像</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/docker/daemon.json</span><br><span class="line"><span class="comment">#配置内容如下</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="string">"registry-mirrors"</span>:[<span class="string">"http://hub-mirror.c.163.com"</span>,<span class="string">"https://docker.mirrors.ustc.edu.cn"</span>]</span><br><span class="line">&#125;</span><br><span class="line">systemctl daemon-reload</span><br><span class="line">systemctl restart docker</span><br></pre></td></tr></table></figure>
+<h3 id="–查看docker信息"><a href="#–查看docker信息" class="headerlink" title="–查看docker信息"></a>–查看docker信息</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker info</span><br></pre></td></tr></table></figure>
+
+<h3 id="操作命令"><a href="#操作命令" class="headerlink" title="-操作命令"></a>-操作命令</h3><h4 id="–镜像相关命令"><a href="#–镜像相关命令" class="headerlink" title="–镜像相关命令"></a>–镜像相关命令</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#查看镜像</span></span><br><span class="line">docker images </span><br><span class="line"><span class="comment">#搜索镜像,示例:docker search mysql</span></span><br><span class="line">docker search 镜像名称	</span><br><span class="line"><span class="comment">#拉取镜像,示例:docker pull centos:7</span></span><br><span class="line">docker pull 镜像名称	</span><br><span class="line"><span class="comment">#删除镜像,示例:docker rmi mysql</span></span><br><span class="line">docker rmi 镜像ID/名称	</span><br><span class="line"><span class="comment">#删除所有镜像</span></span><br><span class="line">docker rmi `docker images -q`</span><br></pre></td></tr></table></figure>
+<h3 id="–容器相关命令"><a href="#–容器相关命令" class="headerlink" title="–容器相关命令"></a>–容器相关命令</h3><h4 id="—查看容器"><a href="#—查看容器" class="headerlink" title="—查看容器"></a>—查看容器</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#查看正在运行的</span></span><br><span class="line">docker ps </span><br><span class="line"><span class="comment">#查看所有容器</span></span><br><span class="line">docker ps -a </span><br><span class="line"><span class="comment">#查看所有容器</span></span><br><span class="line"><span class="comment">#查看最后一次运行的容器</span></span><br><span class="line">docker ps -l </span><br><span class="line"><span class="comment">#查看停止的容器</span></span><br><span class="line">docker ps -f status=exited </span><br><span class="line"><span class="comment">#查看容器ip、端口信息</span></span><br><span class="line">docker inspect -f=<span class="string">'&#123;&#123;.Name&#125;&#125; &#123;&#123;.NetworkSettings.IPAddress&#125;&#125; &#123;&#123;.HostConfig.PortBindings&#125;&#125;'</span> $(docker ps -aq) </span><br><span class="line"><span class="comment">#查看容器全面信息,示例:docker inspect mysql57</span></span><br><span class="line">docker inspect 容器ID/名</span><br><span class="line">iptables -L DOCKER -n --line-number</span><br></pre></td></tr></table></figure>
+<h4 id="—创建与启动"><a href="#—创建与启动" class="headerlink" title="—创建与启动"></a>—创建与启动</h4><blockquote>
+<p>a.参数说明</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">-i	<span class="comment">#表示运行容器</span></span><br><span class="line">-t	<span class="comment">#表示启动后会进入其命令行；</span></span><br><span class="line">--name		<span class="comment">#为容器命名；容器名称必须唯一</span></span><br><span class="line">-v /xxx:/xxx	<span class="comment">#目录映射,表示目录映射关系（前者是宿主机，后者是映射到宿主机的目录），可以使用多个-v做多个目录映射;**最好做目录映射，在宿主机修改，然后共享到容器上**</span></span><br><span class="line">-d	<span class="comment">#守护式容器后台运行</span></span><br><span class="line">-p 3306:3306	<span class="comment">#端口映射</span></span><br><span class="line">--restart=always	<span class="comment">#跟随容器一起启动</span></span><br><span class="line"><span class="comment">#修改已有容器参数</span></span><br><span class="line">docker update --restart=always 容器ID/名</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>b.创建/启动</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#进入容器命令行之后，退出容器</span></span><br><span class="line"><span class="built_in">exit</span></span><br><span class="line"><span class="comment">#1.交互式创建并启动容器,示例:docker run -it --name=myct centos:7</span></span><br><span class="line">docker run -it --name=容器名称 镜像名称:标签 /bin/bash</span><br><span class="line"><span class="comment">#2.守护式创建并启动容器,示例:docker run -di --name=myct2 centos:7</span></span><br><span class="line">docker run-di --name=容器名称 镜像名称:标签 /bin/bash</span><br><span class="line"><span class="comment">#启动容器,docker start myct</span></span><br><span class="line">docker start 容器名</span><br><span class="line"><span class="comment">#停止容器,docker stop myct</span></span><br><span class="line">docker stop 容器名</span><br><span class="line"><span class="comment">#复制宿主机文件到容器,docker cp apache-maven-3.6.3-bin.tar.gz myct:/home</span></span><br><span class="line">docker cp 需要拷贝的文件/目录 容器名称:容器目录</span><br><span class="line"><span class="comment">#复制容器文件到宿主机,docker cp myct:/home/apache-maven-3.6.3-bin.tar.gz test.tar.gz</span></span><br><span class="line">docker cp 容器名称:容器目录 需要拷贝的文件/目录</span><br><span class="line"><span class="comment">#目录挂载,docker run -di -v /home/soft:/home --name=myct3 centos:7</span></span><br><span class="line">创建容器 添加-v参数 后面为宿主机目录:容器目录</span><br><span class="line"><span class="comment">#查看容器信息</span></span><br><span class="line">docker inspect 容器名称/ID</span><br><span class="line">docker inspect --format=<span class="string">'&#123;&#123;.NetworkSettings.IPAddress&#125;&#125;'</span> 容器名称/ID	<span class="comment">#查看ip</span></span><br><span class="line"><span class="comment">#删除容器,docker rm myct</span></span><br><span class="line">docker rm 容器名称/ID</span><br></pre></td></tr></table></figure>
+<h4 id="迁移备份"><a href="#迁移备份" class="headerlink" title="-迁移备份"></a>-迁移备份</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#容器保存为镜像,docker commit nginx nginx_m</span></span><br><span class="line">docker commit 已有容器名称 自定义镜像名称</span><br><span class="line"><span class="comment">#镜像备份,docker save -o mnginx.tar nginx_m</span></span><br><span class="line">docker save -o 压缩包名.tar 自定义镜像名称</span><br><span class="line"><span class="comment">#镜像恢复,docker load -i mnginx.tar</span></span><br><span class="line">docker load -i 压缩包名.tar</span><br></pre></td></tr></table></figure>
+<h4 id="dockerfile"><a href="#dockerfile" class="headerlink" title="-dockerfile"></a>-dockerfile</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#示例</span></span><br><span class="line">FROM centos:7	<span class="comment">#定义使用了哪个基础镜像启动构建流程</span></span><br><span class="line">MAINTAINER yf	<span class="comment">#声明镜像的创建者</span></span><br><span class="line">WORKDIR /usr	<span class="comment">#设置工作目录</span></span><br><span class="line">ADD xxx.tar.gz /usr/<span class="built_in">local</span>/java	<span class="comment">#将宿主机的文件复制到容器内，如果是一个压缩文件，将会在复制后自动解压</span></span><br><span class="line">ENV JAVA_HOME /usr/<span class="built_in">local</span>/java/jdk1.8.0_171	<span class="comment">#设置环境变量（可以写多条）</span></span><br><span class="line">ENV PATH <span class="variable">$JAVA_HOME</span>:<span class="variable">$PATH</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#ADD可以用COPY替代，和ADD相似，但是不会自动解压</span></span><br><span class="line">COPY source_dir/file dest_dir/file</span><br><span class="line"><span class="comment">#执行构建</span></span><br><span class="line">docker build -t=<span class="string">"jdk8"</span></span><br></pre></td></tr></table></figure>
+<h4 id="docker-私有仓库"><a href="#docker-私有仓库" class="headerlink" title="-docker 私有仓库"></a>-docker 私有仓库</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#1.拉取私有仓库镜像</span></span><br><span class="line">docker pull registry</span><br><span class="line"><span class="comment">#2.启动,打开http://ip:5000/v2/_catalog ,正常访问则成功</span></span><br><span class="line">docker run -di --name=registry -p 5000:5000 registry</span><br><span class="line"><span class="comment">#3.修改/etc/docker/daemon.json</span></span><br><span class="line"><span class="comment">#增加属性,"insecure-registries":["http://ip:port"]</span></span><br><span class="line">systemctl restart docker</span><br><span class="line"><span class="comment">#4.上传到私有仓库</span></span><br><span class="line">docker start registry</span><br><span class="line">docker tag 镜像名称 ip:port/镜像名称</span><br><span class="line">docker push ip:port/镜像名称</span><br><span class="line">docker pull ip:port/镜像名称</span><br></pre></td></tr></table></figure>
+<h3 id="常用应用部署"><a href="#常用应用部署" class="headerlink" title="-常用应用部署"></a>-常用应用部署</h3><h4 id="–mysql部署"><a href="#–mysql部署" class="headerlink" title="–mysql部署"></a>–mysql部署</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#centos mysql	</span></span><br><span class="line"><span class="comment">#docker pull centos/mysql-57-centos7</span></span><br><span class="line">docker pull mysql:5.7</span><br><span class="line"><span class="comment">#-p	端口映射，格式为	宿主机端口:容器运行端口</span></span><br><span class="line"><span class="comment">#-e	代表添加环境变量	MYSQL_ROOT_PASSWORD 是root用户的登录密码</span></span><br><span class="line">docker run -di --restart=always --privileged=<span class="literal">true</span> --name=mysql57 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -v /home/mysql/conf:/etc/mysql -v /home/mysql/data:/var/lib/mysql mysql:5.7</span><br><span class="line"><span class="comment">#进入容器</span></span><br><span class="line">docker <span class="built_in">exec</span> -it mysql57 /bin/bash</span><br></pre></td></tr></table></figure>
+<h4 id="–tomcat部署"><a href="#–tomcat部署" class="headerlink" title="–tomcat部署"></a>–tomcat部署</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker pull tomcat:7.0-jdk8</span><br><span class="line">docker run -di --name=tomcat7 -p 8001:8080 -v /home/tomcat7:/usr/<span class="built_in">local</span>/tomcat/webapps tomcat:7.0-jdk8</span><br></pre></td></tr></table></figure>
+<h4 id="–nginx部署"><a href="#–nginx部署" class="headerlink" title="–nginx部署"></a>–nginx部署</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker pull nginx</span><br><span class="line">docker run -di --name=nginx -p 80:80 nginx</span><br><span class="line">docker cp tnginx:/etc/nginx/nginx.conf ./</span><br><span class="line">docker run -di --name=nginx -p 80:80 --restart=always -v /home/dc/nginx/conf.d:/etc/nginx/conf.d -v /home/dc/nginx/conf/nginx.conf:/etc/nginx/nginx.conf -v /home/dc/nginx/<span class="built_in">log</span>:/var/<span class="built_in">log</span>/nginx -v /home/dc/nginx/www:/usr/share/nginx/html nginx</span><br></pre></td></tr></table></figure>
+<h4 id="–redis部署"><a href="#–redis部署" class="headerlink" title="–redis部署"></a>–redis部署</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker pull redis</span><br><span class="line">docker run -di --name=redis -p 6379:6379 redis</span><br><span class="line"><span class="comment">#启动并设置密码</span></span><br><span class="line">docker run -di --name=redis -p 6379:6379 --privileged=<span class="literal">true</span> --restart=always -v /home/dc/redis/data:/data -v /home/dc/redis/conf:/etc/redis redis:latest redis-server --appendonly yes --requirepass <span class="string">"redis@2020"</span></span><br></pre></td></tr></table></figure>
+<h4 id="–zookeeper部署"><a href="#–zookeeper部署" class="headerlink" title="–zookeeper部署"></a>–zookeeper部署</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker pull zookeeper</span><br><span class="line">docker run -di --name=zookeeper -p 2181:2181 zookeeper</span><br><span class="line">docker run -di --name=zk --privileged=<span class="literal">true</span> --restart=always -p 2181:2181 -p 2888:2888 -p 3888:3888 -v /home/dc/zk/conf:/conf -v /home/dc/zk/data:/data -v /home/dc/zk/<span class="built_in">log</span>:/datalog zookeeper</span><br></pre></td></tr></table></figure>
+<h4 id="–gogs-自助git服务"><a href="#–gogs-自助git服务" class="headerlink" title="–gogs(自助git服务)"></a>–gogs(自助git服务)</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker pull gogs/gogs</span><br><span class="line">docker run -di --restart=always --name=gogs -p 10022:22 -p 3000:3000 -v /home/gogsdata:/data gogs/gogs</span><br><span class="line"><span class="comment">#配置说明</span></span><br><span class="line"><span class="comment">#配置数据库为sqlite3</span></span><br><span class="line"><span class="comment">#域名设置为宿主机ip，应用URL，改为宿主机IP</span></span><br></pre></td></tr></table></figure>
+<h4 id="–Portainer安装"><a href="#–Portainer安装" class="headerlink" title="–Portainer安装"></a>–Portainer安装</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker pull portainer/portainer</span><br><span class="line"><span class="comment">#本机模式,仅管理本机的docker容器</span></span><br><span class="line">docker run -d -p 9000:9000 --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v /home/portainer_data:/data --restart=always --name prtainer portainer/portainer</span><br><span class="line"><span class="comment">#远程模式,在Endpoint URL中填写docker节点的地址:docker远程端口（docker安装教程中的设置的-H 0.0.0.0:2375中的2375）</span></span><br><span class="line">docker run -d -p 9000:9000 --restart=always --name prtainer portainer/portainer</span><br></pre></td></tr></table></figure>
+<h4 id="–rancher安装"><a href="#–rancher安装" class="headerlink" title="–rancher安装"></a>–rancher安装</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker pull rancher/server</span><br><span class="line">docker run -di --restart=always --name=rancher -p 9000:8080 rancher/server</span><br><span class="line"><span class="comment">#error，http://rancher-sever:port/v1 is not accessible</span></span><br><span class="line"><span class="comment">#重启rancher客户端所在机器的docker</span></span><br></pre></td></tr></table></figure>
+<h4 id="–rocketmq安装"><a href="#–rocketmq安装" class="headerlink" title="–rocketmq安装"></a>–rocketmq安装</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">docker pull rocketmqinc/rocketmq</span><br><span class="line"><span class="comment">#namesrv开启</span></span><br><span class="line">docker run -di --restart=always -p 9876:9876 -v /home/dc/rmq/namesrv/logs:/root/logs -v /home/dc/rmq/namesrv/store:/root/store --name rmqnamesrv -e <span class="string">"MAX_POSSIBLE_HEAP=100000000"</span> -e <span class="string">"JAVA_OPT_EXT=-server -Xms1024m -Xmx1024m"</span> rocketmqinc/rocketmq sh mqnamesrv</span><br><span class="line"><span class="comment">#编辑本地borker目录的conf/broker.conf</span></span><br><span class="line">vim /home/dc/rmq/broker/conf/broker.conf</span><br><span class="line"><span class="comment">#写入以下内容</span></span><br><span class="line">brokerClusterName = DefaultCluster</span><br><span class="line">brokerName = broker<span class="_">-a</span></span><br><span class="line">brokerId = 0</span><br><span class="line">deleteWhen = 04</span><br><span class="line">fileReservedTime = 48</span><br><span class="line">brokerRole = ASYNC_MASTER</span><br><span class="line">flushDiskType = ASYNC_FLUSH</span><br><span class="line">brokerIP1 = &#123;本地外网 IP&#125;</span><br><span class="line"><span class="comment">#broker 开启</span></span><br><span class="line">docker run -di --restart=always -p 10911:10911 -p 10909:10909 -v  /home/dc/rmq/broker/logs:/root/logs -v  /home/dc/rmq/broker/store:/root/store -v  /home/dc/rmq/broker/conf/broker.conf:/opt/rocketmq-4.4.0/conf/broker.conf --name rmqbroker --link rmqnamesrv:namesrv -e <span class="string">"NAMESRV_ADDR=namesrv:9876"</span> -e <span class="string">"MAX_POSSIBLE_HEAP=200000000"</span> rocketmqinc/rocketmq sh mqbroker -c /opt/rocketmq-4.4.0/conf/broker.conf</span><br><span class="line"><span class="comment">#安装rocketmq控制台</span></span><br><span class="line"><span class="comment">#必须先启动namesrv，再启动broker，否则报错</span></span><br><span class="line"><span class="comment">#创建控制台的container时，-Drocketmq.namesrv.addr必须指定为namesrv所在container的IP</span></span><br><span class="line">docker pull pangliang/rocketmq-console-ng</span><br><span class="line">docker run -di --link rmqnamesrv:rmqnamesrv --name=rmqconsole --restart=always -e <span class="string">"JAVA_OPTS=-Drocketmq.namesrv.addr=rmqnamesrv:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false"</span> -p 8001:8080 -t pangliang/rocketmq-console-ng</span><br></pre></td></tr></table></figure>
+<h4 id="–MongoDB安装"><a href="#–MongoDB安装" class="headerlink" title="–MongoDB安装"></a>–MongoDB安装</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">docker pull mongo</span><br><span class="line"><span class="comment">#启动mongo</span></span><br><span class="line">docker run -p 3307:27017 -v /home/mongo/config/:/data/configdb -v /home/mongo/data/:/data/db --name mongo -d mongo --auth</span><br><span class="line"><span class="comment">#以admin身份进入容器</span></span><br><span class="line">docker <span class="built_in">exec</span> -it mongo mongo admin</span><br><span class="line"><span class="comment">#创建mongo的root账号</span></span><br><span class="line">db.createUser(&#123; user: <span class="string">'root'</span>, <span class="built_in">pwd</span>: <span class="string">'root'</span>, roles: [ &#123; role: <span class="string">"userAdminAnyDatabase"</span>, db: <span class="string">"admin"</span> &#125; ] &#125;);</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/yfzhang1/2020/06/20/record/" rel="next" title="record">
+                <i class="fa fa-chevron-left"></i> record
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/yfzhang1/archives/">
+              
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#docker使用记事"><span class="nav-number">1.</span> <span class="nav-text">docker使用记事</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装配置"><span class="nav-number">1.1.</span> <span class="nav-text">-安装配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#–安装"><span class="nav-number">1.1.1.</span> <span class="nav-text">–安装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#—yum更新"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">—yum更新</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#—安装依赖"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">—安装依赖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#—设置yum源为阿里云"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">—设置yum源为阿里云</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#—安装docker-ce"><span class="nav-number">1.1.1.4.</span> <span class="nav-text">—安装docker-ce</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#—启动docker"><span class="nav-number">1.1.1.5.</span> <span class="nav-text">—启动docker</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#–配置docker国内镜像"><span class="nav-number">1.1.1.6.</span> <span class="nav-text">–配置docker国内镜像</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#–查看docker信息"><span class="nav-number">1.1.2.</span> <span class="nav-text">–查看docker信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作命令"><span class="nav-number">1.1.3.</span> <span class="nav-text">-操作命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#–镜像相关命令"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">–镜像相关命令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#–容器相关命令"><span class="nav-number">1.1.4.</span> <span class="nav-text">–容器相关命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#—查看容器"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">—查看容器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#—创建与启动"><span class="nav-number">1.1.4.2.</span> <span class="nav-text">—创建与启动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#迁移备份"><span class="nav-number">1.1.4.3.</span> <span class="nav-text">-迁移备份</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#dockerfile"><span class="nav-number">1.1.4.4.</span> <span class="nav-text">-dockerfile</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#docker-私有仓库"><span class="nav-number">1.1.4.5.</span> <span class="nav-text">-docker 私有仓库</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用应用部署"><span class="nav-number">1.1.5.</span> <span class="nav-text">-常用应用部署</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#–mysql部署"><span class="nav-number">1.1.5.1.</span> <span class="nav-text">–mysql部署</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#–tomcat部署"><span class="nav-number">1.1.5.2.</span> <span class="nav-text">–tomcat部署</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#–nginx部署"><span class="nav-number">1.1.5.3.</span> <span class="nav-text">–nginx部署</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#–redis部署"><span class="nav-number">1.1.5.4.</span> <span class="nav-text">–redis部署</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#–zookeeper部署"><span class="nav-number">1.1.5.5.</span> <span class="nav-text">–zookeeper部署</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#–gogs-自助git服务"><span class="nav-number">1.1.5.6.</span> <span class="nav-text">–gogs(自助git服务)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#–Portainer安装"><span class="nav-number">1.1.5.7.</span> <span class="nav-text">–Portainer安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#–rancher安装"><span class="nav-number">1.1.5.8.</span> <span class="nav-text">–rancher安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#–rocketmq安装"><span class="nav-number">1.1.5.9.</span> <span class="nav-text">–rocketmq安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#–MongoDB安装"><span class="nav-number">1.1.5.10.</span> <span class="nav-text">–MongoDB安装</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/yfzhang1/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/yfzhang1/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/yfzhang1/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/yfzhang1/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/yfzhang1/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/yfzhang1/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/yfzhang1/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/yfzhang1/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/yfzhang1/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/yfzhang1/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/yfzhang1/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/yfzhang1/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/yfzhang1/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
